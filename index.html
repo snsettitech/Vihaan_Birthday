@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vihaan Turns 1 🏎️ | August 22, 2026</title>
+<meta property="og:title" content="Vihaan is Turning 1! 🏎️">
+<meta property="og:description" content="Start your engines! Join us Saturday, August 22, 2026 at 12:00 PM · Deewan Banquet, Piscataway, NJ">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Titan+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ROOT TOKENS
+============================================================ */
+:root {
+  --red:    #D40000;
+  --dkred:  #8f0000;
+  --brtred: #FF2800;
+  --gold:   #FFD200;
+  --carbon: #1a1a1a;
+  --cream:  #fff8f0;
+  --white:  #ffffff;
+  --shadow: rgba(0,0,0,.35);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--carbon);
+  color:var(--cream);
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ============================================================
+   CHECKER BAR
+============================================================ */
+.checker{
+  height:32px;
+  background:repeating-conic-gradient(#111 0% 25%,#fff 0% 50%) 0 0/32px 32px;
+  animation:checkerScroll 1s linear infinite;
+  flex-shrink:0;
+}
+@keyframes checkerScroll{from{background-position-x:0}to{background-position-x:64px}}
+
+/* ============================================================
+   NAV
+============================================================ */
+#nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:1000;
+  background:rgba(26,26,26,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:3px solid var(--red);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:58px;
+  transition:box-shadow .3s;
+}
+#nav.scrolled{box-shadow:0 4px 24px rgba(212,0,0,.35)}
+.nav-logo{
+  font-family:'Racing Sans One',cursive;
+  color:var(--gold);font-size:19px;letter-spacing:1px;
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo span{color:#fff}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{
+  color:#ccc;font-weight:700;font-size:13px;letter-spacing:.8px;
+  text-decoration:none;text-transform:uppercase;
+  padding:6px 10px;border-radius:8px;
+  transition:all .2s;
+}
+.nav-links a:hover{color:var(--gold);background:rgba(255,210,0,.1)}
+.nav-cta{
+  background:var(--red);color:#fff!important;
+  border-radius:8px!important;
+  padding:8px 14px!important;
+  box-shadow:0 3px 0 var(--dkred);
+  transition:all .15s!important;
+}
+.nav-cta:hover{background:var(--brtred)!important;transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.nav-burger span{display:block;width:22px;height:2.5px;background:#fff;margin:5px 0;border-radius:2px;transition:.3s}
+#mobileMenu{
+  display:none;
+  position:fixed;top:58px;left:0;right:0;
+  background:rgba(26,26,26,.97);
+  border-bottom:3px solid var(--red);
+  z-index:999;padding:16px 0;
+}
+#mobileMenu a{
+  display:block;padding:12px 24px;
+  color:#ccc;font-weight:700;font-size:15px;text-decoration:none;text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  transition:.2s;
+}
+#mobileMenu a:hover{color:var(--gold);padding-left:32px}
+#mobileMenu a:last-child{border:none;color:var(--gold)}
+@media(max-width:680px){
+  .nav-links{display:none}
+  .nav-burger{display:block}
+}
+
+/* ============================================================
+   FLYING CARS LAYER
+============================================================ */
+#carLayer{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:500;overflow:hidden;
+}
+.fly-car{
+  position:absolute;will-change:transform;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.4));
+}
+.fly-car svg{width:100%;height:auto;display:block}
+.fly-car.face-right svg{transform:scaleX(-1)}
+.fly-car .exhaust{
+  position:absolute;top:42%;
+  font-size:.4em;opacity:.85;
+  animation:puff .9s linear infinite;
+}
+@keyframes puff{0%{opacity:.85;transform:scale(.5)}100%{opacity:0;transform:scale(1.7) translateY(-10px)}}
+@keyframes driveRight{from{transform:translateX(-250px)}to{transform:translateX(calc(100vw + 250px))}}
+@keyframes driveLeft{from{transform:translateX(calc(100vw + 250px))}to{transform:translateX(-250px)}}
+@keyframes driveDiagUp{
+  from{transform:translate(-250px,80px) rotate(-7deg)}
+  to{transform:translate(calc(100vw + 250px),-50px) rotate(-7deg)}
+}
+@keyframes bounceDrive{
+  0%{transform:translateX(-250px) translateY(0)}
+  25%{transform:translateX(25vw) translateY(-18px)}
+  50%{transform:translateX(50vw) translateY(0)}
+  75%{transform:translateX(75vw) translateY(-18px)}
+  100%{transform:translateX(calc(100vw + 250px)) translateY(0)}
+}
+
+/* ============================================================
+   CONFETTI
+============================================================ */
+.confetti{
+  position:fixed;top:-24px;pointer-events:none;z-index:498;
+  animation:confFall linear forwards;
+}
+@keyframes confFall{to{transform:translateY(110vh) rotate(900deg);opacity:.8}}
+
+/* ============================================================
+   SPEED LINES (hero bg detail)
+============================================================ */
+.speedlines{
+  position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 100px,rgba(255,255,255,.05) 100px 103px);
+  animation:speedScroll .5s linear infinite;
+}
+@keyframes speedScroll{from{background-position-x:0}to{background-position-x:-103px}}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 20%,#ff2800 0%,var(--red) 40%,var(--dkred) 80%,#400 100%);
+  background-size:180% 180%;
+  animation:heroPulse 6s ease-in-out infinite;
+  text-align:center;
+  padding:90px 20px 60px;
+  overflow:hidden;
+}
+@keyframes heroPulse{0%,100%{background-position:50% 0%}50%{background-position:50% 70%}}
+.hero::before,.hero::after{
+  content:"";position:absolute;top:0;bottom:0;width:22px;
+  background:repeating-linear-gradient(45deg,var(--gold) 0 12px,var(--carbon) 12px 24px);
+  opacity:.8;
+}
+.hero::before{left:10px}
+.hero::after{right:10px}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--carbon);
+  font-weight:900;letter-spacing:3px;font-size:12px;
+  padding:8px 22px;border-radius:999px;
+  text-transform:uppercase;
+  box-shadow:0 4px 0 rgba(0,0,0,.4);
+  margin-bottom:20px;
+  animation:popIn .7s ease both;
+}
+.hero-title{
+  font-family:'Racing Sans One',cursive;
+  font-size:clamp(38px,8vw,78px);
+  line-height:.95;letter-spacing:1px;
+  text-shadow:4px 4px 0 var(--carbon);
+  animation:popIn .8s .1s ease both;
+}
+.hero-title .name{color:var(--gold)}
+.hero-one{
+  font-family:'Titan One',cursive;
+  font-size:clamp(120px,24vw,210px);
+  color:var(--gold);line-height:1;
+  text-shadow:6px 6px 0 var(--carbon),14px 14px 0 rgba(0,0,0,.3),0 0 60px rgba(255,210,0,.9);
+  display:inline-block;
+  animation:revUp 1.1s .2s ease both,bigGlow 2s 1.4s ease-in-out infinite;
+}
+@keyframes bigGlow{
+  0%,100%{transform:scale(1) rotate(0deg);text-shadow:6px 6px 0 var(--carbon),14px 14px 0 rgba(0,0,0,.3),0 0 40px rgba(255,210,0,.7)}
+  50%{transform:scale(1.08) rotate(-2deg);text-shadow:6px 6px 0 var(--carbon),14px 14px 0 rgba(0,0,0,.3),0 0 90px rgba(255,210,0,1)}
+}
+.hero-flags{font-size:clamp(30px,5.5vw,50px);letter-spacing:16px;margin:4px 0 8px}
+.hero-car{
+  width:clamp(200px,44vw,360px);
+  margin:10px auto;
+  animation:carRock 3s ease-in-out infinite;
+  filter:drop-shadow(0 14px 12px rgba(0,0,0,.5));
+}
+.hero-car svg{width:100%;height:auto;display:block;transform:scaleX(-1)}
+@keyframes carRock{0%,100%{transform:translateX(-12px) rotate(-.8deg)}50%{transform:translateX(12px) rotate(.8deg)}}
+.hero-tagline{
+  font-size:clamp(15px,2.8vw,20px);font-weight:700;
+  max-width:520px;margin:8px auto 28px;opacity:.95;
+  animation:popIn .9s .3s ease both;
+}
+.hero-btns{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  animation:popIn 1s .4s ease both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Racing Sans One',cursive;
+  font-size:18px;letter-spacing:1.5px;
+  padding:14px 28px;border-radius:12px;
+  border:3px solid var(--carbon);
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 6px 0 rgba(0,0,0,.4);
+  transition:all .12s;text-transform:uppercase;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 rgba(0,0,0,.4)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.4)}
+.btn-primary{background:var(--gold);color:var(--carbon)}
+.btn-secondary{background:var(--carbon);color:var(--gold)}
+
+.sparkle{
+  position:absolute;font-size:20px;pointer-events:none;
+  animation:twinkle 2s ease-in-out infinite;
+}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0deg)}50%{opacity:1;transform:scale(1.3) rotate(180deg)}}
+
+@keyframes popIn{from{opacity:0;transform:translateY(20px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes revUp{0%{opacity:0;transform:scale(.25) rotate(-15deg)}60%{transform:scale(1.14) rotate(4deg)}100%{opacity:1;transform:none}}
+
+/* ============================================================
+   SECTION HEADER SHARED
+============================================================ */
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--carbon);
+  font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  padding:6px 18px;border-radius:999px;margin-bottom:14px;
+  box-shadow:0 3px 0 rgba(0,0,0,.3);
+}
+.section-title{
+  font-family:'Racing Sans One',cursive;
+  font-size:clamp(26px,6vw,46px);
+  text-transform:uppercase;letter-spacing:1.5px;
+  margin-bottom:8px;
+}
+.section-sub{font-size:16px;font-weight:700;opacity:.75;max-width:500px;margin:0 auto}
+
+/* ============================================================
+   DETAILS SECTION
+============================================================ */
+.details{
+  background:var(--cream);color:var(--carbon);
+  padding:80px 20px;
+  position:relative;overflow:hidden;
+}
+.details::before{
+  content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d40000' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.details-inner{max-width:980px;margin:0 auto;text-align:center;position:relative}
+.detail-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;margin-top:44px;
+}
+.detail-card{
+  background:#fff;border:3px solid var(--carbon);border-radius:20px;
+  padding:30px 20px;text-align:center;
+  box-shadow:7px 7px 0 var(--red);
+  transition:transform .2s,box-shadow .2s;
+}
+.detail-card:hover{transform:translateY(-6px) rotate(.5deg);box-shadow:9px 10px 0 var(--red)}
+.detail-card .dc-icon{font-size:46px;margin-bottom:10px}
+.detail-card h3{
+  font-family:'Racing Sans One',cursive;
+  color:var(--red);font-size:20px;text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:8px;
+}
+.detail-card p{font-weight:700;font-size:16px;line-height:1.5;color:var(--carbon)}
+.detail-card a{
+  color:var(--red);font-weight:800;text-decoration:none;
+  border-bottom:2px dashed var(--red);
+  transition:.2s;
+}
+.detail-card a:hover{color:var(--dkred)}
+
+.dress-note{
+  margin-top:32px;padding:20px 24px;
+  background:var(--carbon);color:var(--gold);
+  border-radius:16px;border:3px solid var(--gold);
+  font-weight:800;font-size:15px;letter-spacing:.5px;
+  display:inline-block;
+  box-shadow:5px 5px 0 rgba(0,0,0,.4);
+}
+
+/* ============================================================
+   COUNTDOWN
+============================================================ */
+.countdown-section{
+  background:var(--carbon);padding:80px 20px;text-align:center;
+}
+.countdown-section .section-title{color:var(--gold)}
+.cd-grid{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+  margin-top:40px;
+}
+.cd-box{
+  background:#111;border:3px solid var(--gold);
+  border-radius:18px;padding:20px 14px;min-width:96px;
+  position:relative;overflow:hidden;
+  box-shadow:none;
+}
+.cd-box::before{
+  content:"";position:absolute;left:0;right:0;top:50%;height:1px;
+  background:rgba(255,210,0,.15);
+}
+.cd-num{
+  font-family:'Titan One',cursive;
+  font-size:clamp(36px,7vw,54px);
+  color:var(--gold);line-height:1;
+  display:block;
+  transition:transform .2s;
+}
+.cd-flip{animation:flip .25s ease}
+@keyframes flip{0%{transform:translateY(-8px);opacity:0}100%{transform:none;opacity:1}}
+.cd-lbl{
+  font-size:11px;font-weight:900;letter-spacing:2.5px;
+  color:#aaa;text-transform:uppercase;margin-top:8px;
+}
+.cd-done{
+  font-family:'Racing Sans One',cursive;
+  font-size:32px;color:var(--gold);letter-spacing:2px;
+  animation:bigGlow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   RACE TRACK
+============================================================ */
+.track-section{
+  background:linear-gradient(180deg,var(--carbon) 0%,#111 100%);
+  padding:80px 20px 60px;text-align:center;
+  overflow:hidden;
+}
+.track-section .section-title{color:var(--cream)}
+.track-wrap{
+  max-width:860px;margin:40px auto 0;
+  position:relative;
+}
+.track-svg{width:100%;height:auto;display:block}
+
+/* car on track */
+#trackCar{
+  position:absolute;
+  width:70px;
+  transform-origin:50% 50%;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));
+  transition:none;
+}
+
+/* ============================================================
+   GALLERY SECTION
+============================================================ */
+.gallery-section{
+  background:var(--cream);color:var(--carbon);
+  padding:80px 20px;text-align:center;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px;
+  max-width:900px;margin:44px auto 0;
+}
+.gallery-item{
+  border-radius:16px;overflow:hidden;
+  border:3px solid var(--carbon);
+  box-shadow:6px 6px 0 var(--red);
+  transition:transform .25s,box-shadow .25s;
+  background:#f0e8df;
+  aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;
+}
+.gallery-item:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:8px 9px 0 var(--red)}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+
+/* ============================================================
+   RSVP SECTION
+============================================================ */
+.rsvp-section{
+  background:linear-gradient(150deg,var(--dkred) 0%,var(--red) 50%,#c00 100%);
+  padding:80px 20px 90px;
+  position:relative;overflow:hidden;
+}
+.rsvp-section::before{
+  content:"";position:absolute;top:-60px;right:-80px;
+  width:340px;height:340px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+}
+.rsvp-section::after{
+  content:"";position:absolute;bottom:-80px;left:-60px;
+  width:260px;height:260px;border-radius:50%;
+  background:rgba(0,0,0,.08);
+}
+.rsvp-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.rsvp-inner .section-title{text-shadow:3px 3px 0 var(--carbon)}
+.rsvp-sub{font-weight:700;font-size:17px;margin:8px 0 36px;opacity:.9}
+
+.rsvp-form{
+  background:var(--cream);color:var(--carbon);
+  border-radius:24px;padding:36px 30px;
+  border:4px solid var(--carbon);
+  box-shadow:10px 10px 0 rgba(0,0,0,.4);
+  text-align:left;
+}
+.form-label{
+  display:block;font-weight:900;
+  font-size:13px;letter-spacing:.8px;text-transform:uppercase;
+  margin-bottom:6px;color:var(--carbon);
+}
+.form-row{margin-bottom:18px}
+.form-row:last-of-type{margin-bottom:0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-input{
+  width:100%;padding:13px 16px;
+  border:2.5px solid #ccc;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;
+  background:#fff;color:var(--carbon);
+  transition:border-color .2s,box-shadow .2s;
+}
+.form-input:focus{
+  outline:none;border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(212,0,0,.15);
+}
+.attend-row{display:flex;gap:10px;margin-top:0}
+.attend-radio{display:none}
+.attend-label{
+  flex:1;text-align:center;
+  padding:14px 8px;font-size:16px;font-weight:800;
+  border:2.5px solid #ccc;border-radius:12px;cursor:pointer;
+  background:#fff;transition:all .15s;
+}
+.attend-radio:checked+.attend-label.yes{
+  background:var(--red);color:#fff;border-color:var(--dkred);
+  box-shadow:0 4px 0 var(--dkred);
+}
+.attend-radio:checked+.attend-label.no{
+  background:var(--carbon);color:#fff;border-color:#000;
+}
+.submit-btn{
+  width:100%;margin-top:26px;
+  background:var(--red);color:#fff;
+  font-family:'Racing Sans One',cursive;
+  font-size:22px;letter-spacing:2px;text-transform:uppercase;
+  padding:18px;border:3px solid var(--carbon);
+  border-radius:14px;cursor:pointer;
+  box-shadow:0 7px 0 var(--carbon);
+  transition:all .12s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.submit-btn:hover:not(:disabled){background:var(--brtred);transform:translateY(-2px);box-shadow:0 9px 0 var(--carbon)}
+.submit-btn:active:not(:disabled){transform:translateY(5px);box-shadow:0 2px 0 var(--carbon)}
+.submit-btn:disabled{opacity:.55;cursor:wait}
+.form-error{
+  display:none;
+  background:var(--carbon);color:#fff;
+  font-weight:800;text-align:center;
+  border-radius:10px;padding:12px 16px;margin-top:14px;
+  border:2px solid var(--gold);font-size:14px;
+}
+.success-box{
+  display:none;
+  background:var(--cream);color:var(--carbon);
+  border-radius:24px;border:4px solid var(--carbon);
+  padding:50px 28px;text-align:center;
+  box-shadow:10px 10px 0 rgba(0,0,0,.4);
+}
+.success-box .s-icon{font-size:72px;margin-bottom:8px;display:block}
+.success-box h3{
+  font-family:'Racing Sans One',cursive;
+  color:var(--red);font-size:32px;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.success-box p{font-weight:700;font-size:17px;line-height:1.6;color:var(--carbon)}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{
+  background:#111;
+  text-align:center;padding:40px 20px 50px;
+  border-top:3px solid var(--red);
+}
+.footer-logo{
+  font-family:'Racing Sans One',cursive;
+  color:var(--gold);font-size:22px;letter-spacing:2px;
+  margin-bottom:16px;
+}
+.footer-family{color:#bbb;font-weight:700;font-size:15px;line-height:2}
+.footer-hearts{
+  color:var(--gold);font-family:'Racing Sans One',cursive;
+  font-size:17px;letter-spacing:1px;margin-top:16px;
+}
+.footer-copy{color:#555;font-size:12px;margin-top:20px}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width:540px){
+  .form-grid{grid-template-columns:1fr}
+  .rsvp-form{padding:24px 18px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:300px;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ========================================================
+  FLYING CARS LAYER
+======================================================== -->
+<div id="carLayer"></div>
+
+<!-- ========================================================
+  NAV
+======================================================== -->
+<nav id="nav">
+  <a href="#top" class="nav-logo">🏎️ <span>Vihaan</span> &nbsp;·&nbsp; <span style="color:var(--gold)">Turns 1</span></a>
+  <ul class="nav-links">
+    <li><a href="#details">Details</a></li>
+    <li><a href="#countdown">Countdown</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#rsvp" class="nav-cta">🏁 RSVP</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div id="mobileMenu">
+  <a href="#details" class="mob-link">Details</a>
+  <a href="#countdown" class="mob-link">Countdown</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#rsvp" class="mob-link">🏁 RSVP</a>
+</div>
+
+<!-- ========================================================
+  CHECKER
+======================================================== -->
+<div class="checker"></div>
+
+<!-- ========================================================
+  HERO
+======================================================== -->
+<section class="hero" id="top">
+  <div class="speedlines"></div>
+
+  <!-- sparkles -->
+  <span class="sparkle" style="top:10%;left:16%;animation-delay:0s">✨</span>
+  <span class="sparkle" style="top:20%;right:12%;animation-delay:.6s">⭐</span>
+  <span class="sparkle" style="top:55%;left:8%;animation-delay:1s">💫</span>
+  <span class="sparkle" style="top:48%;right:6%;animation-delay:1.4s">✨</span>
+  <span class="sparkle" style="top:75%;left:20%;animation-delay:.3s">⭐</span>
+  <span class="sparkle" style="top:8%;right:28%;animation-delay:1.2s">✨</span>
+  <span class="sparkle" style="top:35%;left:4%;animation-delay:.8s">💫</span>
+  <span class="sparkle" style="top:65%;right:18%;animation-delay:.2s">⭐</span>
+
+  <div class="hero-badge">🏁 Birthday Invitation 🏁</div>
+  <h1 class="hero-title">
+    <span class="name">VIHAAN</span> SETTI<br>IS TURNING
+  </h1>
+  <div class="hero-one">1</div>
+  <div class="hero-flags">🏁 🏆 🏁</div>
+
+  <div class="hero-car" id="heroCar"></div>
+
+  <p class="hero-tagline">Start your engines and join us to celebrate<br>Vihaan's very first lap around the sun!</p>
+
+  <div class="hero-btns">
+    <a href="#rsvp" class="btn btn-primary">🏎️ RSVP Now</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Deewan+Banquet+560+Stelton+Road+Piscataway+NJ"
+       target="_blank" rel="noopener" class="btn btn-secondary">📍 Get Directions</a>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  EVENT DETAILS
+======================================================== -->
+<section class="details" id="details">
+  <div class="details-inner">
+    <div class="reveal">
+      <div class="section-label">🗓️ Race Day Details</div>
+      <h2 class="section-title" style="color:var(--red)">The Starting Grid</h2>
+      <p class="section-sub">Everything you need to know before you arrive</p>
+    </div>
+
+    <div class="detail-cards">
+      <div class="detail-card reveal">
+        <div class="dc-icon">📅</div>
+        <h3>Date</h3>
+        <p>Saturday<br><strong>August 22, 2026</strong></p>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:.1s">
+        <div class="dc-icon">⏱️</div>
+        <h3>Time</h3>
+        <p>12:00 PM<br><span style="font-size:13px;opacity:.7">Arrive on time. Race starts promptly!</span></p>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:.2s">
+        <div class="dc-icon">📍</div>
+        <h3>Venue</h3>
+        <p>Deewan Banquet<br>560 Stelton Road<br>Piscataway, NJ<br>
+        <br><a href="https://www.google.com/maps/search/?api=1&query=Deewan+Banquet+560+Stelton+Road+Piscataway+NJ" target="_blank" rel="noopener">Get Directions →</a></p>
+      </div>
+      <div class="detail-card reveal" style="transition-delay:.3s">
+        <div class="dc-icon">🎂</div>
+        <h3>Occasion</h3>
+        <p>Vihaan's<br><strong>1st Birthday!</strong><br>
+        <span style="font-size:13px;opacity:.7">🏎️ Ferrari & Supercar Theme</span></p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:32px">
+      <div class="dress-note">
+        🏁 Dress Code: Smart Casual · Red, Black &amp; Gold welcome! 🏆
+      </div>
+    </div>
+
+    <!-- Google Maps embed -->
+    <div class="reveal" style="margin-top:40px;border-radius:20px;overflow:hidden;border:4px solid var(--carbon);box-shadow:8px 8px 0 var(--red)">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3040.7!2d-74.4693!3d40.5504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3b3b3b3b3b3b3%3A0x0!2sDeewan+Banquet%2C+560+Stelton+Rd%2C+Piscataway%2C+NJ!5e0!3m2!1sen!2sus!4v1"
+        width="100%" height="280" style="border:0;display:block" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Deewan Banquet location"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  COUNTDOWN
+======================================================== -->
+<section class="countdown-section" id="countdown">
+  <div class="reveal">
+    <div class="section-label">⏱️ Racing Clock</div>
+    <h2 class="section-title">Countdown to the<br>Big Race</h2>
+  </div>
+  <div class="cd-grid" id="cdGrid">
+    <div class="cd-box">
+      <span class="cd-num" id="cd-days">–</span>
+      <div class="cd-lbl">Days</div>
+    </div>
+    <div class="cd-box">
+      <span class="cd-num" id="cd-hours">–</span>
+      <div class="cd-lbl">Hours</div>
+    </div>
+    <div class="cd-box">
+      <span class="cd-num" id="cd-mins">–</span>
+      <div class="cd-lbl">Minutes</div>
+    </div>
+    <div class="cd-box">
+      <span class="cd-num" id="cd-secs">–</span>
+      <div class="cd-lbl">Seconds</div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  RACE TRACK ANIMATION
+======================================================== -->
+<section class="track-section" id="track">
+  <div class="reveal">
+    <div class="section-label">🏎️ On The Track</div>
+    <h2 class="section-title">The Birthday Circuit</h2>
+    <p class="section-sub" style="color:#aaa">Watch Vihaan's racer go!</p>
+  </div>
+
+  <div class="track-wrap" id="trackWrap">
+    <!-- SVG oval race track -->
+    <svg class="track-svg" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" id="trackSVG">
+      <!-- tarmac fill -->
+      <ellipse cx="400" cy="210" rx="370" ry="180" fill="#222"/>
+      <!-- inner grass -->
+      <ellipse cx="400" cy="210" rx="248" ry="110" fill="#1a3d1a"/>
+      <!-- track path (the road surface, between inner and outer) -->
+      <ellipse cx="400" cy="210" rx="370" ry="180" fill="none" stroke="#333" stroke-width="120"/>
+      <!-- road markings -->
+      <ellipse cx="400" cy="210" rx="370" ry="180" fill="none"
+        stroke="#FFD200" stroke-width="3" stroke-dasharray="24 20" opacity=".6"/>
+      <ellipse cx="400" cy="210" rx="248" ry="110" fill="none"
+        stroke="#FFD200" stroke-width="2" stroke-dasharray="16 14" opacity=".4"/>
+      <!-- center lines dashed white -->
+      <ellipse cx="400" cy="210" rx="310" ry="145" fill="none"
+        stroke="white" stroke-width="2" stroke-dasharray="12 12" opacity=".2"/>
+      <!-- START/FINISH line -->
+      <rect x="390" y="22" width="20" height="12" fill="#fff"/>
+      <rect x="390" y="34" width="10" height="12" fill="#000"/>
+      <rect x="400" y="22" width="10" height="12" fill="#000"/>
+      <rect x="400" y="34" width="10" height="12" fill="#fff"/>
+      <!-- BANNER text in center -->
+      <text x="400" y="195" text-anchor="middle" font-family="Racing Sans One,cursive"
+        font-size="46" fill="#FFD200" opacity=".18">VIHAAN</text>
+      <text x="400" y="245" text-anchor="middle" font-family="Titan One,cursive"
+        font-size="70" fill="#D40000" opacity=".15">1</text>
+      <!-- pit boxes -->
+      <rect x="595" y="280" width="80" height="30" rx="4" fill="#111" stroke="#FFD200" stroke-width="1.5"/>
+      <text x="635" y="299" text-anchor="middle" font-family="Nunito,sans-serif"
+        font-size="11" fill="#FFD200" font-weight="800">PIT LANE</text>
+      <!-- crowd dots decoration -->
+      <g opacity=".25">
+        <rect x="10" y="100" width="4" height="4" rx="1" fill="#ff5"/>
+        <rect x="20" y="108" width="4" height="4" rx="1" fill="#f55"/>
+        <rect x="14" y="116" width="4" height="4" rx="1" fill="#5f5"/>
+        <rect x="774" y="100" width="4" height="4" rx="1" fill="#ff5"/>
+        <rect x="764" y="108" width="4" height="4" rx="1" fill="#f55"/>
+        <rect x="770" y="116" width="4" height="4" rx="1" fill="#5f5"/>
+      </g>
+    </svg>
+
+    <!-- the moving car on track (positioned by JS) -->
+    <div id="trackCar"></div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  GALLERY
+======================================================== -->
+<section class="gallery-section" id="gallery">
+  <div class="reveal">
+    <div class="section-label">📸 The Birthday Racer</div>
+    <h2 class="section-title" style="color:var(--red)">Our Little Champion</h2>
+    <p class="section-sub">Photos coming soon. Stay tuned!</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item reveal" style="transition-delay:.05s">🏎️</div>
+    <div class="gallery-item reveal" style="transition-delay:.1s">🏆</div>
+    <div class="gallery-item reveal" style="transition-delay:.15s">🎂</div>
+    <div class="gallery-item reveal" style="transition-delay:.2s">🏁</div>
+    <div class="gallery-item reveal" style="transition-delay:.25s">⭐</div>
+    <div class="gallery-item reveal" style="transition-delay:.3s">🎉</div>
+    <div class="gallery-item reveal" style="transition-delay:.35s">🚗</div>
+    <div class="gallery-item reveal" style="transition-delay:.4s">👶</div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  RSVP
+======================================================== -->
+<section class="rsvp-section" id="rsvp">
+  <div class="rsvp-inner">
+    <div class="reveal">
+      <div class="section-label" style="background:var(--gold);color:var(--carbon)">🏁 Reserve Your Spot</div>
+      <h2 class="section-title">RSVP</h2>
+      <p class="rsvp-sub">Secure your place on the starting grid!<br>Please respond by <strong>August 10, 2026</strong></p>
+    </div>
+
+    <div class="reveal">
+      <form class="rsvp-form" id="rsvpForm">
+
+        <div class="form-row">
+          <label class="form-label" for="name">Your Name *</label>
+          <input class="form-input" type="text" id="name" name="name" required
+            placeholder="e.g. The Sharma Family">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label" for="email">Email *</label>
+            <input class="form-input" type="email" id="email" name="email" required
+              placeholder="you@example.com">
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="phone">Phone</label>
+            <input class="form-input" type="tel" id="phone" name="phone"
+              placeholder="(optional)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Will you be joining the race? *</label>
+          <div class="attend-row">
+            <input type="radio" class="attend-radio" id="att-yes" name="attending" value="Yes" required>
+            <label for="att-yes" class="attend-label yes">🏎️ &nbsp;YES, I'll be there!</label>
+            <input type="radio" class="attend-radio" id="att-no" name="attending" value="No">
+            <label for="att-no" class="attend-label no">❌ &nbsp;Can't make it</label>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label class="form-label" for="adults"># Adults</label>
+            <select class="form-input" id="adults" name="adults">
+              <option value="0">0</option>
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="kids"># Kids</label>
+            <select class="form-input" id="kids" name="kids">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="message">Message for the Birthday Racer</label>
+          <textarea class="form-input" id="message" name="message" rows="3"
+            placeholder="Vroom vroom, Vihaan! 🏎️ Happy 1st Birthday!"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          🏁 Submit RSVP
+        </button>
+        <div class="form-error" id="errorMsg">
+          ⚠️ Oops, pit stop! Please try again or contact us directly.
+        </div>
+      </form>
+
+      <div class="success-box" id="successBox">
+        <span class="s-icon">🏆</span>
+        <h3>You're on the Grid!</h3>
+        <p>Thanks for your RSVP. We can't wait to celebrate with you!<br><br>
+        🏎️💨 See you at the finish line on <strong>August 22!</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  FOOTER
+======================================================== -->
+<footer>
+  <div class="footer-logo">🏎️ Vihaan Setti · Turning 1 🏎️</div>
+  <div class="footer-family">
+    With all our love,<br>
+    <strong>Chaitanya &amp; Priyanka Setti</strong><br>
+    <br>
+    Grandparents:<br>
+    <strong>Satya &amp; Vasuki Chandana</strong><br>
+    <strong>Appa Rao &amp; Sunitha Setti</strong>
+  </div>
+  <div class="footer-hearts">🏁 August 22, 2026 · Deewan Banquet · Piscataway, NJ 🏁</div>
+  <div class="footer-copy">Made with ❤️ and lots of vroom vroom!</div>
+</footer>
+
+<!-- ========================================================
+  SCRIPTS
+======================================================== -->
+<script>
+/* ============================================================
+   GOOGLE SHEETS: PASTE YOUR APPS SCRIPT /exec URL BELOW
+   (follow google-sheet-setup.md to get this URL)
+============================================================ */
+const SHEET_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+
+/* ============================================================
+   NAV: mobile + scroll shadow
+============================================================ */
+const nav     = document.getElementById("nav");
+const burger  = document.getElementById("burger");
+const mMenu   = document.getElementById("mobileMenu");
+let   menuOpen = false;
+
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 10);
+});
+burger.addEventListener("click", () => {
+  menuOpen = !menuOpen;
+  mMenu.style.display = menuOpen ? "block" : "none";
+});
+document.querySelectorAll(".mob-link").forEach(a => {
+  a.addEventListener("click", () => { menuOpen = false; mMenu.style.display = "none"; });
+});
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("visible");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal,.reveal-left,.reveal-right").forEach(el => io.observe(el));
+
+/* ============================================================
+   CAR SVG BUILDERS
+============================================================ */
+function wheel(cx, cy, r, sd) {
+  return `<g>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0d0d0d"/>
+    <circle cx="${cx}" cy="${cy}" r="${r*.55}" fill="#3a3a3a"/>
+    <circle cx="${cx}" cy="${cy}" r="${r*.18}" fill="#999"/>
+    <g stroke="#c0c0c0" stroke-width="2.2">
+      <path d="M${cx} ${cy-r*.52} V${cy+r*.52}"/>
+      <path d="M${cx-r*.52} ${cy} H${cx+r*.52}"/>
+      <path d="M${cx-r*.37} ${cy-r*.37} L${cx+r*.37} ${cy+r*.37}"/>
+      <path d="M${cx+r*.37} ${cy-r*.37} L${cx-r*.37} ${cy+r*.37}"/>
+      <animateTransform attributeName="transform" type="rotate"
+        from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${sd}s" repeatCount="indefinite"/>
+    </g>
+    <circle cx="${cx}" cy="${cy}" r="${r*.10}" fill="#ddd"/>
+  </g>`;
+}
+
+function ferrariSVG(body, sd=.45) {
+  const s = "rgba(0,0,0,.22)";
+  return `<svg viewBox="0 0 260 84" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="fbody${body.replace('#','')}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${body}" stop-opacity=".95"/>
+        <stop offset="100%" stop-color="${body}" stop-opacity=".7"/>
+      </linearGradient>
+    </defs>
+    <path d="M8 58 Q10 44 30 40 L58 35 Q80 16 118 14 L146 14 Q178 16 205 32 L232 38 Q252 42 252 54 L250 60 L228 62 A20 20 0 0 0 188 62 L102 62 A20 20 0 0 0 62 62 L12 62 Z"
+      fill="url(#fbody${body.replace('#','')})"/>
+    <path d="M96 20 L142 18 Q166 20 186 32 L120 34 Q100 30 96 20 Z" fill="#1a2530"/>
+    <path d="M120 34 L186 32 L188 36 L122 37 Z" fill="${s}"/>
+    <path d="M150 44 l40 -2 l-5 9 l-33 -1 Z" fill="${s}"/>
+    <rect x="14" y="44" width="22" height="5" rx="2" fill="#ffe27a"/>
+    <rect x="241" y="43" width="9" height="5" rx="2" fill="#ff5c5c"/>
+    <rect x="56" y="53" width="130" height="3" rx="1" fill="${s}"/>
+    <rect x="95" y="13" width="3" height="8" rx="1" fill="${body}"/>
+    ${wheel(82,62,17,sd)}
+    ${wheel(208,62,17,sd)}
+  </svg>`;
+}
+
+function lamboSVG(body, sd=.45) {
+  const s = "rgba(0,0,0,.28)";
+  return `<svg viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="lbody${body.replace('#','')}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${body}" stop-opacity=".92"/>
+        <stop offset="100%" stop-color="${body}" stop-opacity=".65"/>
+      </linearGradient>
+    </defs>
+    <path d="M6 56 L14 44 L52 36 L96 18 L150 14 L196 22 L240 36 L252 44 L250 58 L226 60 A19 19 0 0 0 190 60 L100 60 A19 19 0 0 0 64 60 L10 60 Z"
+      fill="url(#lbody${body.replace('#','')})"/>
+    <path d="M100 22 L148 18 L188 26 L124 32 Z" fill="#141c24"/>
+    <path d="M196 38 l28 -2 l-4 11 l-24 -2 Z" fill="${s}"/>
+    <path d="M52 36 L96 18 L98 22 L58 38 Z" fill="${s}"/>
+    <path d="M18 44 L42 40 L40 46 L18 48 Z" fill="#ffe9a0"/>
+    <rect x="240" y="42" width="9" height="4" rx="1" fill="#ff4444"/>
+    <path d="M228 30 l18 -2 l1 4 l-18 1 Z" fill="#1a1a1a"/>
+    ${wheel(82,60,16,sd)}
+    ${wheel(208,60,16,sd)}
+  </svg>`;
+}
+
+const CARS = [
+  () => ferrariSVG("#D40000"),
+  () => ferrariSVG("#111"),
+  () => ferrariSVG("#FFD200"),
+  () => ferrariSVG("#FF7B00"),
+  () => lamboSVG("#FFD200"),
+  () => lamboSVG("#7ACC00"),
+  () => lamboSVG("#FF7B00"),
+  () => lamboSVG("#00b8d4"),
+  () => lamboSVG("#9b00d9"),
+];
+
+/* ============================================================
+   FLYING CARS
+============================================================ */
+const ANIMS = ["driveRight","driveLeft","driveDiagUp","bounceDrive"];
+const layer = document.getElementById("carLayer");
+
+function spawnFlyingCar() {
+  const el = document.createElement("div");
+  const anim = ANIMS[Math.floor(Math.random() * ANIMS.length)];
+  const goLeft = anim === "driveLeft";
+  el.className = "fly-car" + (goLeft ? "" : " face-right");
+  const sz  = 70 + Math.random() * 120;
+  const top = 5 + Math.random() * 88;
+  const dur = 3 + Math.random() * 7;
+  el.style.cssText = `width:${sz}px;top:${top}vh;animation:${anim} ${dur}s linear forwards;opacity:.92`;
+  const svgFn = CARS[Math.floor(Math.random() * CARS.length)];
+  const side  = goLeft ? `right:-.5em` : `left:-.5em`;
+  el.innerHTML = svgFn() +
+    `<span class="exhaust" style="${side};font-size:${sz*.22}px">💨</span>`;
+  layer.appendChild(el);
+  setTimeout(() => el.remove(), dur * 1000 + 300);
+}
+
+// hero big car
+document.getElementById("heroCar").innerHTML = ferrariSVG("#D40000", 0.7);
+
+// initial burst + steady stream
+for (let i = 0; i < 5; i++) setTimeout(spawnFlyingCar, i * 380);
+setInterval(spawnFlyingCar, 950);
+
+/* ============================================================
+   CONFETTI
+============================================================ */
+const CONF = ["🔴","🟡","⬛","🏁","🎈","🎉","⭐","🏎️"];
+
+function spawnConfetti() {
+  const c = document.createElement("div");
+  c.className = "confetti";
+  c.textContent = CONF[Math.floor(Math.random() * CONF.length)];
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.fontSize = 10 + Math.random() * 16 + "px";
+  c.style.animationDuration = 5 + Math.random() * 5 + "s";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 11000);
+}
+setInterval(spawnConfetti, 480);
+
+/* ============================================================
+   COUNTDOWN TIMER
+============================================================ */
+const PARTY = new Date("2026-08-22T12:00:00-04:00").getTime();
+const cdIds = ["cd-days","cd-hours","cd-mins","cd-secs"];
+let prev = [null, null, null, null];
+
+function updateCountdown() {
+  let diff = PARTY - Date.now();
+  if (diff <= 0) {
+    document.getElementById("cdGrid").innerHTML =
+      `<div class="cd-done">🏎️ IT'S RACE DAY! 🏁</div>`;
+    return;
+  }
+  const vals = [
+    Math.floor(diff / 864e5),
+    Math.floor(diff % 864e5 / 36e5),
+    Math.floor(diff % 36e5 / 6e4),
+    Math.floor(diff % 6e4 / 1e3),
+  ];
+  vals.forEach((v, i) => {
+    const el = document.getElementById(cdIds[i]);
+    if (!el) return;
+    if (v !== prev[i]) {
+      el.classList.remove("cd-flip");
+      void el.offsetWidth;
+      el.classList.add("cd-flip");
+      el.textContent = String(v).padStart(2, "0");
+      prev[i] = v;
+    }
+  });
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ============================================================
+   TRACK CAR ANIMATION
+============================================================ */
+(function initTrack() {
+  const trackCar = document.getElementById("trackCar");
+  const wrap     = document.getElementById("trackWrap");
+  trackCar.innerHTML = ferrariSVG("#D40000", 0.3);
+
+  // ellipse parameters (matching the SVG viewBox 800×420)
+  const CX = 400, CY = 210, RX = 310, RY = 145;
+
+  let angle = -Math.PI / 2; // start at top
+  let lastAngle = angle;
+
+  function step() {
+    angle += 0.012; // speed
+
+    // position on ellipse
+    const svgX = CX + RX * Math.cos(angle);
+    const svgY = CY + RY * Math.sin(angle);
+
+    // tangent angle for car rotation
+    const tx = -RX * Math.sin(angle);
+    const ty =  RY * Math.cos(angle);
+    const rot = Math.atan2(ty, tx) * 180 / Math.PI;
+
+    // convert SVG coords → container percentage
+    const svgW = 800, svgH = 420;
+    const rect  = wrap.getBoundingClientRect();
+    // account for the track-wrap padding; use the SVG's natural ratio
+    const scale = rect.width / svgW;
+    const pxX   = svgX * scale;
+    const pxY   = svgY * scale;
+    const carW  = 70; // px
+
+    trackCar.style.left   = (pxX - carW / 2) + "px";
+    trackCar.style.top    = (pxY - 14) + "px";
+    trackCar.style.transform = `rotate(${rot}deg)`;
+
+    lastAngle = angle;
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+
+/* ============================================================
+   VICTORY BURST
+============================================================ */
+function victoryBurst() {
+  for (let i = 0; i < 18; i++) setTimeout(spawnFlyingCar, i * 110);
+  for (let i = 0; i < 50; i++) setTimeout(spawnConfetti,  i * 50);
+}
+
+/* ============================================================
+   RSVP FORM SUBMIT → GOOGLE SHEETS
+============================================================ */
+document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById("submitBtn");
+  const err = document.getElementById("errorMsg");
+  err.style.display = "none";
+  btn.disabled = true;
+  btn.innerHTML = "🏎️ &nbsp;Sending…";
+
+  try {
+    const data = new FormData(e.target);
+
+    // send to Google Sheets Apps Script
+    await fetch(SHEET_URL, { method: "POST", mode: "no-cors", body: data });
+
+    // show success regardless of no-cors response
+    e.target.style.display = "none";
+    document.getElementById("successBox").style.display = "block";
+    victoryBurst();
+  } catch (ex) {
+    err.style.display = "block";
+    btn.disabled = false;
+    btn.innerHTML = "🏁 Submit RSVP";
+  }
+});
+
+/* ============================================================
+   ENGINE REV sound on RSVP button hover (Web Audio API)
+============================================================ */
+let audioCtx;
+function revEngine() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + .22);
+    osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + .45);
+    gain.gain.setValueAtTime(.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + .5);
+    osc.start(); osc.stop(audioCtx.currentTime + .5);
+  } catch(_) {}
+}
+document.getElementById("submitBtn").addEventListener("mouseenter", revEngine);
+</script>
+</body>
+</html>
