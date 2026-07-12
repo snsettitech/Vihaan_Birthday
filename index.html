@@ -371,6 +371,21 @@ img{max-width:100%;display:block}
 }
 
 /* ============================================================
+   ADD TO CALENDAR
+============================================================ */
+.cal-section{
+  background:var(--carbon);
+  padding:70px 20px;text-align:center;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.cal-section .section-title{color:var(--gold)}
+.cal-btns{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  margin-top:34px;
+}
+.cal-note{margin-top:20px;font-size:13px;font-weight:700;color:#888}
+
+/* ============================================================
    RACE TRACK
 ============================================================ */
 .track-section{
@@ -565,6 +580,7 @@ footer{
   <ul class="nav-links">
     <li><a href="#details">Details</a></li>
     <li><a href="#countdown">Countdown</a></li>
+    <li><a href="#calendar">Calendar</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#rsvp" class="nav-cta">🏁 RSVP</a></li>
   </ul>
@@ -575,6 +591,7 @@ footer{
 <div id="mobileMenu">
   <a href="#details" class="mob-link">Details</a>
   <a href="#countdown" class="mob-link">Countdown</a>
+  <a href="#calendar" class="mob-link">Calendar</a>
   <a href="#gallery" class="mob-link">Gallery</a>
   <a href="#rsvp" class="mob-link">🏁 RSVP</a>
 </div>
@@ -701,6 +718,26 @@ footer{
       <div class="cd-lbl">Seconds</div>
     </div>
   </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- ========================================================
+  ADD TO CALENDAR
+======================================================== -->
+<section class="cal-section" id="calendar">
+  <div class="reveal">
+    <div class="section-label">🗓️ Save the Date</div>
+    <h2 class="section-title">Add to Your Calendar</h2>
+    <p class="section-sub" style="color:#aaa">One tap and race day is locked into your calendar</p>
+  </div>
+  <div class="cal-btns reveal">
+    <a class="btn btn-primary"
+       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Vihaan%27s%201st%20Birthday%20%F0%9F%8F%8E%EF%B8%8F&dates=20260822T160000Z/20260822T190000Z&details=Start%20your%20engines%21%20Join%20us%20to%20celebrate%20Vihaan%20turning%201.%20Ferrari%20%26%20supercar%20theme.&location=Deewan%20Banquet%2C%20560%20Stelton%20Road%2C%20Piscataway%2C%20NJ"
+       target="_blank" rel="noopener">📅 Google Calendar</a>
+    <button class="btn btn-secondary" id="icsBtn" type="button">🍎 Apple / Outlook</button>
+  </div>
+  <p class="cal-note">Saturday, August 22, 2026 · 12:00 PM · Deewan Banquet, Piscataway NJ</p>
 </section>
 
 <div class="checker"></div>
@@ -1154,6 +1191,37 @@ function victoryBurst() {
   for (let i = 0; i < 18; i++) setTimeout(spawnFlyingCar, i * 110);
   for (let i = 0; i < 50; i++) setTimeout(spawnConfetti,  i * 50);
 }
+
+/* ============================================================
+   ADD TO CALENDAR - .ics download (Apple / Outlook)
+============================================================ */
+document.getElementById("icsBtn").addEventListener("click", () => {
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Vihaan 1st Birthday//EN",
+    "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:vihaan-1st-birthday-2026@snsettitech.github.io",
+    "DTSTAMP:20260712T000000Z",
+    "DTSTART:20260822T160000Z",
+    "DTEND:20260822T190000Z",
+    "SUMMARY:Vihaan's 1st Birthday",
+    "LOCATION:Deewan Banquet\\, 560 Stelton Road\\, Piscataway\\, NJ",
+    "DESCRIPTION:Start your engines! Join us to celebrate Vihaan turning 1. Ferrari & supercar theme.",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href = url;
+  a.download = "Vihaan-1st-Birthday.ics";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 
 /* ============================================================
    RSVP FORM SUBMIT → GOOGLE SHEETS
