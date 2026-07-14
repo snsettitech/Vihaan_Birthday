@@ -403,11 +403,47 @@ img{max-width:100%;display:block}
 /* car on track */
 #trackCar{
   position:absolute;
-  width:70px;
+  width:98px;
   transform-origin:50% 50%;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.65));
   transition:none;
+  z-index:4;
 }
+
+/* ===== GRAND PRIX MINI-GAME ===== */
+.gp-hud{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;max-width:520px;margin:26px auto 0}
+.gp-stat{background:#000;border:2px solid #333;border-radius:14px;padding:12px 20px;min-width:104px}
+.gp-num{display:block;font-family:'Titan One',cursive;font-size:34px;color:var(--gold);line-height:1}
+.gp-lbl{display:block;font-size:11px;font-weight:800;letter-spacing:2px;color:#fff;text-transform:uppercase;margin-top:5px}
+.gp-overlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;z-index:6;background:rgba(0,0,0,.5);border-radius:12px;transition:opacity .3s;
+}
+.gp-overlay.hidden{opacity:0;pointer-events:none}
+.gp-lights{display:flex;gap:12px}
+.gp-lights span{width:26px;height:26px;border-radius:50%;background:#3a0000;border:2px solid #500;box-shadow:inset 0 0 6px #000}
+.gp-lights span.on{background:var(--red);border-color:#ff6a6a;box-shadow:0 0 16px rgba(255,40,0,.9)}
+.gp-lights.go span{background:#19c37d;border-color:#7dffbe;box-shadow:0 0 16px rgba(25,195,125,.9)}
+.gp-start,.gp-again{
+  font-family:'Racing Sans One',cursive;font-size:22px;letter-spacing:1px;background:var(--red);color:#fff;
+  border:3px solid var(--carbon);border-radius:14px;padding:14px 30px;cursor:pointer;
+  box-shadow:0 6px 0 var(--carbon);text-transform:uppercase;transition:.12s;
+}
+.gp-start:hover,.gp-again:hover{background:var(--brtred)}
+.gp-start:active,.gp-again:active{transform:translateY(4px);box-shadow:0 2px 0 var(--carbon)}
+.gp-result{text-align:center;color:#fff;display:none}
+.gp-result.show{display:block}
+.gp-result .big{font-family:'Titan One',cursive;font-size:44px;color:var(--gold);line-height:1}
+.gp-result .msg{font-weight:800;margin:6px 0 16px;font-size:16px}
+.gp-tap{
+  display:none;width:100%;max-width:520px;margin:22px auto 0;font-family:'Racing Sans One',cursive;
+  font-size:26px;letter-spacing:2px;background:var(--gold);color:var(--carbon);border:3px solid var(--carbon);
+  border-radius:16px;padding:22px;cursor:pointer;text-transform:uppercase;box-shadow:0 7px 0 var(--carbon);
+  user-select:none;-webkit-user-select:none;touch-action:manipulation;
+}
+.gp-tap.active{display:block;animation:gpPulse 1s ease-in-out infinite}
+.gp-tap:active{transform:translateY(5px);box-shadow:0 2px 0 var(--carbon)}
+@keyframes gpPulse{0%,100%{box-shadow:0 7px 0 var(--carbon)}50%{box-shadow:0 7px 0 var(--carbon),0 0 24px rgba(255,210,0,.7)}}
 
 /* ============================================================
    GALLERY SECTION
@@ -580,6 +616,7 @@ footer{
   <ul class="nav-links">
     <li><a href="#details">Details</a></li>
     <li><a href="#countdown">Countdown</a></li>
+    <li><a href="#track">Game</a></li>
     <li><a href="#calendar">Calendar</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#rsvp" class="nav-cta">🏁 RSVP</a></li>
@@ -591,6 +628,7 @@ footer{
 <div id="mobileMenu">
   <a href="#details" class="mob-link">Details</a>
   <a href="#countdown" class="mob-link">Countdown</a>
+  <a href="#track" class="mob-link">Game</a>
   <a href="#calendar" class="mob-link">Calendar</a>
   <a href="#gallery" class="mob-link">Gallery</a>
   <a href="#rsvp" class="mob-link">🏁 RSVP</a>
@@ -747,9 +785,15 @@ footer{
 ======================================================== -->
 <section class="track-section" id="track">
   <div class="reveal">
-    <div class="section-label">🏎️ On The Track</div>
-    <h2 class="section-title">The Birthday Circuit</h2>
-    <p class="section-sub" style="color:#aaa">Watch Vihaan's racer go!</p>
+    <div class="section-label">🎮 Mini Game</div>
+    <h2 class="section-title">Vihaan's Grand Prix</h2>
+    <p class="section-sub" style="color:#aaa">Tap as fast as you can — how many laps in 15 seconds?</p>
+  </div>
+
+  <div class="gp-hud reveal">
+    <div class="gp-stat"><span class="gp-num" id="gpTime">15.0</span><span class="gp-lbl">Seconds</span></div>
+    <div class="gp-stat"><span class="gp-num" id="gpLaps">0</span><span class="gp-lbl">Laps</span></div>
+    <div class="gp-stat"><span class="gp-num" id="gpBest">0</span><span class="gp-lbl">Best</span></div>
   </div>
 
   <div class="track-wrap" id="trackWrap">
@@ -794,9 +838,18 @@ footer{
       </g>
     </svg>
 
-    <!-- the moving car on track (positioned by JS) -->
+    <!-- the racing car (positioned by JS) -->
     <div id="trackCar"></div>
+
+    <!-- game overlay: start lights / start button / result -->
+    <div class="gp-overlay" id="gpOverlay">
+      <div class="gp-lights" id="gpLights"><span></span><span></span><span></span><span></span><span></span></div>
+      <button class="gp-start" id="gpStart">🏁 Start Race</button>
+      <div class="gp-result" id="gpResult"></div>
+    </div>
   </div>
+
+  <button class="gp-tap" id="gpTap">👆 TAP TO GO!</button>
 </section>
 
 <div class="checker"></div>
@@ -1141,46 +1194,117 @@ setInterval(updateCountdown, 1000);
 /* ============================================================
    TRACK CAR ANIMATION
 ============================================================ */
-(function initTrack() {
+(function initGrandPrix() {
   const trackCar = document.getElementById("trackCar");
   const wrap     = document.getElementById("trackWrap");
   trackCar.innerHTML = ferrariSVG("#D40000", 0.3);
 
-  // ellipse parameters (matching the SVG viewBox 800×420)
-  const CX = 400, CY = 210, RX = 310, RY = 145;
+  // ellipse params (SVG viewBox 800×420); START = top, on the start/finish line
+  const CX = 400, CY = 210, RX = 310, RY = 145, SVGW = 800, START = -Math.PI / 2;
 
-  let angle = -Math.PI / 2; // start at top
-  let lastAngle = angle;
+  const elTime  = document.getElementById("gpTime");
+  const elLaps  = document.getElementById("gpLaps");
+  const elBest  = document.getElementById("gpBest");
+  const overlay = document.getElementById("gpOverlay");
+  const lights  = document.getElementById("gpLights");
+  const startBtn= document.getElementById("gpStart");
+  const result  = document.getElementById("gpResult");
+  const tapBtn  = document.getElementById("gpTap");
 
-  function step() {
-    angle += 0.012; // speed
+  const RACE_MS = 15000, TAP_BOOST = 0.013, FRICTION = 0.95, MAX_SPEED = 0.08;
+  let state = "idle", angle = START, speed = 0, lapProg = 0, laps = 0, elapsed = 0, lastNow = 0;
+  let best = parseInt(localStorage.getItem("vihaan_gp_best") || "0", 10);
+  elBest.textContent = best;
 
-    // position on ellipse
-    const svgX = CX + RX * Math.cos(angle);
-    const svgY = CY + RY * Math.sin(angle);
-
-    // tangent angle for car rotation
-    const tx = -RX * Math.sin(angle);
-    const ty =  RY * Math.cos(angle);
+  function place() {
+    const svgX = CX + RX * Math.cos(angle), svgY = CY + RY * Math.sin(angle);
+    const tx = -RX * Math.sin(angle), ty = RY * Math.cos(angle);
     const rot = Math.atan2(ty, tx) * 180 / Math.PI;
-
-    // convert SVG coords → container percentage
-    const svgW = 800, svgH = 420;
-    const rect  = wrap.getBoundingClientRect();
-    // account for the track-wrap padding; use the SVG's natural ratio
-    const scale = rect.width / svgW;
-    const pxX   = svgX * scale;
-    const pxY   = svgY * scale;
-    const carW  = 70; // px
-
-    trackCar.style.left   = (pxX - carW / 2) + "px";
-    trackCar.style.top    = (pxY - 14) + "px";
+    const scale = wrap.getBoundingClientRect().width / SVGW;
+    trackCar.style.left = (svgX * scale - 49) + "px";
+    trackCar.style.top  = (svgY * scale - 16) + "px";
     trackCar.style.transform = `rotate(${rot}deg)`;
-
-    lastAngle = angle;
-    requestAnimationFrame(step);
   }
-  requestAnimationFrame(step);
+  place();
+
+  function tap() {
+    if (state !== "racing") return;
+    speed = Math.min(MAX_SPEED, speed + TAP_BOOST);
+  }
+
+  function loop(now) {
+    if (lastNow === 0) lastNow = now;
+    const dt = Math.min(now - lastNow, 100);   // clamp so a hidden tab just pauses
+    lastNow = now;
+    if (state === "racing") {
+      elapsed += dt;
+      const left = Math.max(0, RACE_MS - elapsed);
+      elTime.textContent = (left / 1000).toFixed(1);
+      speed *= FRICTION;
+      angle += speed; lapProg += speed;
+      if (lapProg >= Math.PI * 2) {
+        lapProg -= Math.PI * 2; laps++; elLaps.textContent = laps;
+        if (typeof spawnConfetti === "function") for (let i = 0; i < 5; i++) setTimeout(spawnConfetti, i * 40);
+      }
+      place();
+      if (left <= 0) finish();
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  function lightsSequence(cb) {
+    const spans = [...lights.children];
+    spans.forEach(s => s.classList.remove("on"));
+    lights.classList.remove("go");
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i < spans.length) { spans[i].classList.add("on"); i++; }
+      else {
+        clearInterval(iv);
+        setTimeout(() => { lights.classList.add("go"); cb(); }, 450 + Math.random() * 500);
+      }
+    }, 550);
+  }
+
+  function startRace() {
+    result.classList.remove("show");
+    startBtn.style.display = "none";
+    laps = 0; elLaps.textContent = "0"; speed = 0; lapProg = 0; angle = START; place();
+    elTime.textContent = "15.0";
+    state = "countdown";
+    lightsSequence(() => {
+      state = "racing"; elapsed = 0; lastNow = 0;
+      overlay.classList.add("hidden");
+      tapBtn.classList.add("active");
+    });
+  }
+
+  function finish() {
+    state = "finished"; speed = 0;
+    tapBtn.classList.remove("active");
+    overlay.classList.remove("hidden");
+    lights.classList.remove("go");
+    [...lights.children].forEach(s => s.classList.remove("on"));
+    const isBest = laps > best;
+    if (isBest) {
+      best = laps; localStorage.setItem("vihaan_gp_best", best); elBest.textContent = best;
+      if (typeof victoryBurst === "function") victoryBurst();
+    }
+    result.innerHTML =
+      `<div class="big">${laps} lap${laps === 1 ? "" : "s"}</div>` +
+      `<div class="msg">${isBest ? "🏆 New best — you're on pole!" : "🏁 Nice driving! Beat your best?"}</div>` +
+      `<button class="gp-again" id="gpAgain">🔄 Race Again</button>`;
+    result.classList.add("show");
+    document.getElementById("gpAgain").addEventListener("click", startRace);
+  }
+
+  startBtn.addEventListener("click", startRace);
+  tapBtn.addEventListener("pointerdown", e => { e.preventDefault(); tap(); });
+  wrap.addEventListener("pointerdown", () => { if (state === "racing") tap(); });
+  document.addEventListener("keydown", e => {
+    if (e.code === "Space" && state === "racing") { e.preventDefault(); tap(); }
+  });
 })();
 
 /* ============================================================
