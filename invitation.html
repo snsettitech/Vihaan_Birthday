@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vihaan's 1st Birthday Invitation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .invitation {
+            width: 100%;
+            max-width: 800px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 8px solid #dc143c;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.5), inset 0 0 40px rgba(255, 215, 0, 0.1);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .invitation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 35px,
+                rgba(255, 215, 0, 0.03) 35px,
+                rgba(255, 215, 0, 0.03) 70px
+            );
+            animation: drift 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .racing-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        h1 {
+            font-family: 'Racing Sans One', cursive;
+            font-size: 60px;
+            color: #ffd700;
+            text-shadow: 3px 3px 0 #dc143c, 6px 6px 0 rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 24px;
+            color: #dc143c;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
+            margin: 30px 0;
+            border-bottom: 2px dashed #dc143c;
+        }
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .detail-item {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 4px solid #ffd700;
+            padding: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .detail-label {
+            font-size: 12px;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .detail-value {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .address {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .theme-note {
+            text-align: center;
+            font-size: 16px;
+            color: #ffd700;
+            margin: 30px 0;
+            font-style: italic;
+        }
+        .rsvp-section {
+            background: rgba(220, 20, 60, 0.1);
+            border: 2px solid #dc143c;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .rsvp-text {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 12px;
+        }
+        .rsvp-link {
+            font-size: 18px;
+            color: #ffd700;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #dc143c;
+        }
+        .from-name {
+            font-family: 'Racing Sans One', cursive;
+            font-size: 28px;
+            color: #ffd700;
+            text-shadow: 2px 2px 0 #dc143c;
+            margin-bottom: 10px;
+        }
+        .from-label {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .checkered-flag {
+            text-align: center;
+            font-size: 32px;
+            margin-top: 20px;
+            letter-spacing: 8px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .invitation { max-width: 100%; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation">
+        <div class="content">
+            <div class="header">
+                <div class="racing-line">
+                    🏁 ⚡ 🏁
+                </div>
+                <h1>VIHAAN</h1>
+                <h1 style="font-size: 48px; margin-top: -20px;">Turns 1!</h1>
+                <div class="subtitle">You're Invited to the Grand Celebration!</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="theme-note">
+                🏎️ Ferrari & Supercar Themed Birthday Bash 🏎️
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <div class="detail-label">📅 Date</div>
+                    <div class="detail-value">Saturday<br>September 22, 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">⏰ Time</div>
+                    <div class="detail-value">12:00 PM<br>(Onwards)</div>
+                </div>
+                <div class="detail-item full-width">
+                    <div class="detail-label">📍 Location</div>
+                    <div class="detail-value address">
+                        Deewan Banquet<br>
+                        560 Stelton Road<br>
+                        Piscataway, NJ 08854
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="rsvp-section">
+                <div class="rsvp-text">RSVP by September 15, 2026</div>
+                <div class="rsvp-link">vihaansetti.com</div>
+            </div>
+
+            <div class="footer">
+                <div class="from-label">With Love</div>
+                <div class="from-name">Chaitanya Kumar Setti</div>
+                <div style="font-size: 13px; color: #aaa; margin-top: 8px;">On behalf of the Setti Family</div>
+                <div class="checkered-flag">🏁 🏁 🏁</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
